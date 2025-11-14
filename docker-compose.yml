@@ -1,0 +1,18 @@
+services:
+  ssh-server:
+    build: .
+    container_name: ssh-server
+    ports:
+      - "2222:22"
+    restart: unless-stopped
+    volumes:
+      - ssh-user-data:/home/sshuser/.ssh
+    networks:
+      - ssh-network
+
+volumes:
+  ssh-user-data:
+
+networks:
+  ssh-network:
+    driver: bridge
